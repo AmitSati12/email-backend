@@ -4,8 +4,14 @@ import Connection from './database/db.js';
 import routes from './routes/route.js';
 
 const app = express();
-
-app.use(cors());
+app.use(
+  cors({
+    origin: "*", // for now (we'll lock later)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+// app.use(cors());
 // Avoid body-parser deprecated warning by providing `extended` option
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
